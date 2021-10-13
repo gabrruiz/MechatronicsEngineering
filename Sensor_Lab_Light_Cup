@@ -1,0 +1,22 @@
+void loop()
+{
+  val=digitalRead(Sensor);
+  if(val==HIGH)
+  {
+    digitalWrite(Led,LOW);
+  }
+  else
+  {
+    digitalWrite(Led,HIGH);
+  }
+  
+  val=digitalRead(SensorPrpl);
+  if(val==HIGH)
+  {
+    digitalWrite(LedBrwn,LOW);
+  }
+  else
+  {
+    digitalWrite(LedBrwn,HIGH);
+  }
+}
