@@ -1,22 +1,39 @@
+int Led1=13;
+int Led2=12;
+int Sensor1=10;
+int Sensor2=9;
+int val;
+
+void setup()
+{
+pinMode(Led1,OUTPUT);
+pinMode(Sensor1,INPUT);
+digitalWrite(Sensor1,HIGH);
+  
+pinMode(Led2,OUTPUT);
+pinMode(Sensor2,INPUT);
+digitalWrite(Sensor2,HIGH);
+}
+
 void loop()
 {
-  val=digitalRead(Sensor);
+  val=digitalRead(Sensor1);
   if(val==HIGH)
   {
-    digitalWrite(Led,LOW);
+    digitalWrite(Led1,LOW);
   }
   else
   {
-    digitalWrite(Led,HIGH);
+    digitalWrite(Led1,HIGH);
   }
   
-  val=digitalRead(SensorPrpl);
+  val=digitalRead(Sensor2);
   if(val==HIGH)
   {
-    digitalWrite(LedBrwn,LOW);
+    digitalWrite(Led2,LOW);
   }
   else
   {
-    digitalWrite(LedBrwn,HIGH);
+    digitalWrite(Led2,HIGH);
   }
 }
