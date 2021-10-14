@@ -1,24 +1,24 @@
-int Led1=13;
-int Led2=12;
-int Sensor1=10;
-int Sensor2=9;
-int val;
+int Led1=13; //Declaration of the LED1-output pin
+int Led2=12; //Declaration of the LED2-output pin
+int Sensor1=10; //Declaration of the Sensor1-input pin
+int Sensor2=9;//Declaration of the Sensor2-input pin
+int val; //Temporary Variable
 
 void setup()
 {
-pinMode(Led1,OUTPUT);
-pinMode(Sensor1,INPUT);
-digitalWrite(Sensor1,HIGH);
+pinMode(Led1,OUTPUT); //Initialization output pin
+pinMode(Sensor1,INPUT); //Initialization sensor pin
+digitalWrite(Sensor1,HIGH); // Activating of the internal pull-up resistor
   
-pinMode(Led2,OUTPUT);
-pinMode(Sensor2,INPUT);
-digitalWrite(Sensor2,HIGH);
+pinMode(Led2,OUTPUT); //Initialization output pin
+pinMode(Sensor2,INPUT); //Initialization sensor pin
+digitalWrite(Sensor2,HIGH); // Activating of the internal pull-up resistor
 }
 
 void loop()
 {
-  val=digitalRead(Sensor1);
-  if(val==HIGH)
+  val=digitalRead(Sensor1); // The current signal from the sensor1 will be read
+  if(val==HIGH) // If a signal will be detected, LED1 will light up
   {
     digitalWrite(Led1,LOW);
   }
@@ -27,8 +27,8 @@ void loop()
     digitalWrite(Led1,HIGH);
   }
   
-  val=digitalRead(Sensor2);
-  if(val==HIGH)
+  val=digitalRead(Sensor2); // The current signal from the sensor2 will be read
+  if(val==HIGH) // If a signal will be detected, LED2 will light up
   {
     digitalWrite(Led2,LOW);
   }
