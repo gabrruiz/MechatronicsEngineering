@@ -1,0 +1,41 @@
+import RPi.GPIO as GPIO
+import time
+from time import sleep
+
+GPIO.setmode(GPIO.BOARD) 
+
+LED = 5
+button=3
+
+GPIO.setwarnings(False)
+#GPIO.setup(button,GPIO.IN)
+GPIO.setup(button,GPIO.IN)
+GPIO.setup(button,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(LED,GPIO.OUT)
+
+while True:
+    if GPIO.input(button)==GPIO.LOW:
+        print("Button was pushed")
+        GPIO.output(LED,GPIO.HIGH) 
+        sleep(2)
+        GPIO.output(LED,GPIO.LOW)
+        start_time=time.time()
+        ty_res=time.gmtime(start_time)
+        res=time.strftime("%S",ty_res)
+        res=int(res)
+        print(res)
+        future_time=res+10
+        time_flag=1
+        while time_flag==True:
+            end_time=time.time()
+            ty_res_2=time.gmtime(end_time)
+            res_2=time.strftime("%S",ty_res_2)
+            res_2=int(res_2)
+            print(res_2)
+            if res_2==future_time
+                print("Hi")
+            #time=end_time-start_time
+            #rounded_time=round(time)
+    else:
+        GPIO.output(LED,GPIO.LOW)
+    
