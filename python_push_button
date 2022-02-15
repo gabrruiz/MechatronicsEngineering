@@ -23,19 +23,23 @@ while True:
         ty_res=time.gmtime(start_time)
         res=time.strftime("%S",ty_res)
         res=int(res)
-        print(res)
-        future_time=res+10
+        print("Start")
+        if res>=50:
+            future_time=res-50
+        else:
+            future_time=res+10
         time_flag=1
         while time_flag==True:
             end_time=time.time()
             ty_res_2=time.gmtime(end_time)
             res_2=time.strftime("%S",ty_res_2)
             res_2=int(res_2)
-            print(res_2)
-            if res_2==future_time
-                print("Hi")
-            #time=end_time-start_time
-            #rounded_time=round(time)
+            if res_2==future_time:
+                GPIO.output(LED,GPIO.HIGH)
+                if GPIO.input(button)==GPIO.LOW:
+                    print("You Win")
+            elif res_2!=future_time:
+                if GPIO.input(button)==GPIO.LOW:
+                    print("You Lose!")
     else:
         GPIO.output(LED,GPIO.LOW)
-    
