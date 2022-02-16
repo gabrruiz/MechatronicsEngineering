@@ -33,12 +33,21 @@ while True:
             convert_2=time.gmtime(end_time)
             current_time=time.strftime("%S",convert_2)
             current_time=int(current_time)
-            if current_time==future_time:#set limits
+            plus=future_time+0.5
+            minus=future_time-0.5
+            if current_time==future_time:
                 GPIO.output(LED,GPIO.HIGH)
+            elif current_time!=future_time:
+                GPIO.output(LED,GPIO.LOW)
+            if minus<=current_time>=plus:
+                GPIO.output(LED,GPIO.HIGH) 
                 if GPIO.input(button)==GPIO.LOW:
                     print("You Win!")
-            elif current_time!=future_time:#set limits
+                    sleep(10)
+            elif minus>=current_time<=plus:
+                GPIO.output(LED,GPIO.LOW) 
                 if GPIO.input(button)==GPIO.LOW:
                     print("You Lose!")
+                    sleep(10)
     else:
         GPIO.output(LED,GPIO.LOW)
