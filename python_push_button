@@ -3,12 +3,11 @@ import time
 from time import sleep
 
 GPIO.setmode(GPIO.BOARD) 
+GPIO.setwarnings(False)
 
 LED = 5
 button=3
 
-GPIO.setwarnings(False)
-#GPIO.setup(button,GPIO.IN)
 GPIO.setup(button,GPIO.IN)
 GPIO.setup(button,GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(LED,GPIO.OUT)
@@ -19,26 +18,26 @@ while True:
         GPIO.output(LED,GPIO.HIGH) 
         sleep(2)
         GPIO.output(LED,GPIO.LOW)
-        start_time=time.time()
-        ty_res=time.gmtime(start_time)
-        res=time.strftime("%S",ty_res)
-        res=int(res)
-        print("Start")
-        if res>=50:
-            future_time=res-50
+        start=time.time()
+        convert=time.gmtime(start)
+        start_time=time.strftime("%S",convert)
+        start_time=int(start_time)
+        print("Push button again in 10 sec to test reflex")
+        if start_time>=50:
+            future_time=start_time-50
         else:
-            future_time=res+10
+            future_time=start_time+10
         time_flag=1
         while time_flag==True:
             end_time=time.time()
-            ty_res_2=time.gmtime(end_time)
-            res_2=time.strftime("%S",ty_res_2)
-            res_2=int(res_2)
-            if res_2==future_time:
+            convert_2=time.gmtime(end_time)
+            current_time=time.strftime("%S",convert_2)
+            current_time=int(current_time)
+            if current_time==future_time:#set limits
                 GPIO.output(LED,GPIO.HIGH)
                 if GPIO.input(button)==GPIO.LOW:
-                    print("You Win")
-            elif res_2!=future_time:
+                    print("You Win!")
+            elif current_time!=future_time:#set limits
                 if GPIO.input(button)==GPIO.LOW:
                     print("You Lose!")
     else:
