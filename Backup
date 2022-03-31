@@ -1,0 +1,9 @@
+#!/bin/bash
+DEST_FOLDER='/home/pi/piBack/'
+DEST_FILE="piBack-$(date +'%F%R').tar"
+BACKUP_CMD='/bin/tar -rvf'
+
+$BACKUP_CMD $DEST_FOLDER/$DEST_FILE /home/pi/piCode
+$BACKUP_CMD $DEST_FOLDER/$DEST_FILE /home/pi/Documents/*.txt
+$BACKUP_CMD $DEST_FOLDER/$DEST_FILE /home/pi/bob.png 
+/bin/gzip $DEST_FOLDER/$DEST_FILE
