@@ -1,0 +1,24 @@
+import RPi.GPIO as GPIO
+import time
+from time import sleep
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+servoPIN=11
+GPIO.setup(servoPIN,GPIO.OUT)
+robot_servo=GPIO.PWM(servoPIN,50)#50HZ or 20 ms
+robot_servo.start(1.9)#percent of duty cycle about 0 degrees
+times_run=0
+while times_run<4:
+    sleep(2)
+    robot_servo.ChangeDutyCycle(7.5)#90 degrees
+    sleep(1.8)
+    robot_servo.ChangeDutyCycle(1.9)
+    sleep(2)
+    robot_servo.ChangeDutyCycle(7.5)#180 degrees
+    sleep(1.8)
+    robot_servo.ChangeDutyCycle(1.9)
+    sleep(2)
+    robot_servo.ChangeDutyCycle(7.5)#180 degrees
+    sleep(1.8)
+    times_run=times_run+1
