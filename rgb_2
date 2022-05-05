@@ -1,0 +1,99 @@
+import RPi.GPIO as GPIO
+from time import sleep
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+
+red = 11
+green = 13
+blue = 15
+
+GPIO.setup(red,GPIO.OUT)
+GPIO.setup(green,GPIO.OUT)
+GPIO.setup(blue,GPIO.OUT)
+
+RUNNING=True
+
+Freq=100
+
+RED=GPIO.PWM(red, Freq)
+BLUE=GPIO.PWM(blue, Freq)
+GREEN=GPIO.PWM(green, Freq)
+
+RED.start(0)
+GREEN.start(0)
+BLUE.start(0)
+robot_name= (str(input("Enter robot name here NO SPACES: ")))
+if " " in robot_name:
+    robot_name=robot_name.replace(" ","_")
+    print("I fixed the spaces for you")
+    robot_name=robot_name.lower
+    print(robot_name)
+
+color_choice=(str(input("Enter rgb color here: ")))
+print(robot_name)
+color_choice=color_choice.lower()
+
+print(color_choice)
+
+#if color_choice=="yellow":
+   # yellow=""
+#if color_choice=="light blue":
+   # light_blue=""
+#if color_choice=="":
+#    purple=""
+#if color_choice=="white":
+  #  white=""     
+def turnOff():
+    RED.ChangeDutyCycle(0)
+    GREEN.ChangeDutyCycle(0)
+    BLUE.ChangeDutyCycle(0)
+    
+def white_color():
+    RED.ChangeDutyCycle(100)
+    GREEN.ChangeDutyCycle(100)
+    BLUE.ChangeDutyCycle(100)
+    
+def red_color():
+    RED.ChangeDutyCycle(100)
+    GREEN.ChangeDutyCycle(0)
+    BLUE.ChangeDutyCycle(0)
+    
+def green_color():
+    RED.ChangeDutyCycle(0)
+    GREEN.ChangeDutyCycle(100)
+    BLUE.ChangeDutyCycle(0)
+    
+def blue_color():
+    RED.ChangeDutyCycle(0)
+    GREEN.ChangeDutyCycle(0)
+    BLUE.ChangeDutyCycle(100)
+    
+def yellow_color():
+    RED.ChangeDutyCycle(100)
+    GREEN.ChangeDutyCycle(100)
+    BLUE.ChangeDutyCycle(0)
+    
+def purple_color():
+    RED.ChangeDutyCycle(100)
+    GREEN.ChangeDutyCycle(0)
+    BLUE.ChangeDutyCycle(100)
+    
+def lightBlue_color():
+    RED.ChangeDutyCycle(0)
+    GREEN.ChangeDutyCycle(100)
+    BLUE.ChangeDutyCycle(100)
+    
+if True:
+    if color_choice=="red":
+        red_color()
+        sleep(2)
+    if color_choice=="green":
+        green_color()
+        sleep(2)
+    if color_choice=="blue":
+        blue_color()
+        sleep(2)
+else:
+    print("It is hex")
